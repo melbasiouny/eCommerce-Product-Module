@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <img class="rounded" style="object-fit: contain; margin-bottom: 0px;" src="${product.image}" width="180" height="120">
                             <div class="rating" style="position: absolute; top: 0px; right: 6px;">
                                 <span style="color: black; font-weight: bold; font-size: 14px;">${product.rating}</span>
-                                <span style="color: black; font-size: 18px;">⭐</span>
+                                <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="text-uppercase fw-bold product-name" style="overflow-wrap: break-word;">${product.name}</div>
                             <div class="product-price">C$ ${product.price}</div>
@@ -81,7 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         if (category.textContent == "All") {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            if (search_query.value == "") {
+                window.location.href = 'index.html';
+            } else {
+                window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            }
         } else {
             window.location.href = 'product-search.html?category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
         }

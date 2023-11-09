@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <img class="rounded" style="object-fit: contain; margin-bottom: 0px;" src="${product.image}" width="180" height="120">
                             <div class="rating" style="position: absolute; top: 0px; right: 6px;">
                                 <span style="color: black; font-weight: bold; font-size: 14px;">${product.rating}</span>
-                                <span style="color: black; font-size: 18px;">⭐</span>
+                            <i class="bi bi-star-fill"></i>
                             </div>
                             <div class="text-uppercase fw-bold product-name" style="overflow-wrap: break-word;">${product.name}</div>
                             <div class="product-price">C$ ${product.price}</div>
@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (products.length > 0) {
                     if (query == "") {
-                        if (category == "") {
-                            search_status.textContent = "Showing all results";
-                        } else {
-                            search_status.textContent = "Showing all results in " + category.toLowerCase();
-                        }
+                        search_status.textContent = "Showing all results in " + category.toLowerCase();
                     } else {
-                        search_status.textContent = "Showing results for \"" + query + "\"" + " in " + category.toLowerCase();
+                        if (category == "") {
+                            search_status.textContent = "Showing all results for \"" + query + "\"";
+                        } else {
+                            search_status.textContent = "Showing results for \"" + query + "\"" + " in " + category.toLowerCase();
+                        }
                     }
                 } else {
                     search_status.textContent = "No products found for \"" + query + "\"";
@@ -89,7 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
         if (category_button.textContent == "All") {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            if (search_query.value == "") {
+                window.location.href = 'index.html';
+            } else {
+                window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            }
         } else {
             window.location.href = 'product-search.html?category=' + encodeURIComponent(category_button.textContent) + '&query=' + encodeURIComponent(search_query.value);
         }

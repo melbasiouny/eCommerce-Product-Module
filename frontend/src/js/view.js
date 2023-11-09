@@ -1,3 +1,5 @@
+import confetti from "canvas-confetti";
+
 document.addEventListener('DOMContentLoaded', async function () {
     const add_to_cart_button = document.getElementById("product_add_to_cart");
     const wishlist_button = document.getElementById("product_wishlist");
@@ -24,20 +26,54 @@ document.addEventListener('DOMContentLoaded', async function () {
         event.preventDefault();
 
         if (category.textContent == "All") {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            if (search_query.value == "") {
+                window.location.href = 'index.html';
+            } else {
+                window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+            }
         } else {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent(category_button.textContent) + '&query=' + encodeURIComponent(search_query.value);
+            window.location.href = 'product-search.html?category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
         }
     });
 
     add_to_cart_button.addEventListener("click", (event) => {
         event.preventDefault();
-        alert("Added product to cart.");
+        add_to_cart_button.classList.add('heartBeatAnimation');
+        setTimeout(function () {
+            add_to_cart_button.classList.remove('heartBeatAnimation');
+        }, 500);
     });
 
     wishlist_button.addEventListener("click", (event) => {
         event.preventDefault();
-        alert("Added product to wishlist.");
+        wishlist_button.classList.add('heartBeatAnimation');
+        setTimeout(function () {
+            wishlist_button.classList.remove('heartBeatAnimation');
+        }, 500);
+
+        const rect = wishlist_button.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        var scalar = 2;
+        var heart = confetti.shapeFromText({ text: '❤️', scalar });
+
+        var defaults = {
+            spread: 360,
+            ticks: 32,
+            gravity: 0,
+            decay: 0.7,
+            startVelocity: 32,
+            shapes: [heart],
+            scalar
+        };
+
+        confetti({
+            shapes: [heart],
+            particleCount: 32,
+            origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+            ...defaults,
+        });
     });
 
     function display_product_details(product) {
