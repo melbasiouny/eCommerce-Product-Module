@@ -1,0 +1,4 @@
+#!/bin/bash
+
+npm i --save-dev vite
+npm i --save canvas-confetti
