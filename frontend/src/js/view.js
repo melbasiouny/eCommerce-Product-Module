@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
+    /*
     add_to_cart_button.addEventListener("click", (event) => {
         event.preventDefault();
         add_to_cart_button.classList.add('heartBeatAnimation');
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             add_to_cart_button.classList.remove('heartBeatAnimation');
         }, 500);
     });
+    */
 
     wishlist_button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -75,6 +77,18 @@ document.addEventListener('DOMContentLoaded', async function () {
             ...defaults,
         });
     });
+
+    const cartButtons = document.querySelectorAll('.cart-button');
+
+    cartButtons.forEach(button => {
+        button.addEventListener('click', cartClick);
+
+    });
+
+    function cartClick() {
+        let button = this;
+        button.classList.add('clicked');
+    }
 
     function display_product_details(product) {
         document.title = product.pid + " | " + product.name;

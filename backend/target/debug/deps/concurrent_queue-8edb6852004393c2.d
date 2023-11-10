@@ -1,0 +1,9 @@
+/home/mostafa/playground/group-3-ecommerce-product-module/backend/target/debug/deps/concurrent_queue-8edb6852004393c2.rmeta: /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/lib.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/bounded.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/single.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/unbounded.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/sync.rs
+
+/home/mostafa/playground/group-3-ecommerce-product-module/backend/target/debug/deps/concurrent_queue-8edb6852004393c2.d: /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/lib.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/bounded.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/single.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/unbounded.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/sync.rs
+
+/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/lib.rs:
+/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/bounded.rs:
+/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/single.rs:
+/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/unbounded.rs:
+/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/concurrent-queue-2.3.0/src/sync.rs:

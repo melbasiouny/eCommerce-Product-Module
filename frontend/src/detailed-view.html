@@ -40,6 +40,135 @@
         .heartBeatAnimation {
             animation: heartBeat 0.5s;
         }
+
+        .cart-button {
+            position: relative;
+            padding: 10px;
+            width: 200px;
+            height: 50px;
+            border: 0;
+            border-radius: 10px;
+            background-color: #4834d4;
+            outline: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .cart-button:hover {
+            background-color: #35269b;
+        }
+
+        .cart-button:active {
+            transform: scale(.9);
+        }
+
+        .cart-button .bi-cart-fill {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: -10%;
+            font-size: 1.5em;
+            transform: translate(-50%, -50%);
+        }
+
+        .cart-button .bi-box2-fill {
+            position: absolute;
+            z-index: 3;
+            top: -30%;
+            left: 50.5%;
+            font-size: 0.8em;
+            transform: translate(-50%, -50%);
+        }
+
+        .cart-button span {
+            position: absolute;
+            z-index: 3;
+            left: 50%;
+            top: 50%;
+            font-size: 1em;
+            color: #fff;
+            transform: translate(-50%, -50%);
+        }
+
+        .cart-button span.add-to-cart {
+            opacity: 1;
+        }
+
+        .cart-button span.added {
+            opacity: 0;
+        }
+
+        .cart-button.clicked .bi-cart-fill {
+            animation: cart 1.5s ease-in-out forwards;
+        }
+
+        .cart-button.clicked .bi-box2-fill {
+            animation: box 1.5s ease-in-out forwards;
+        }
+
+        .cart-button.clicked span.add-to-cart {
+            animation: txt1 1.5s ease-in-out forwards;
+        }
+
+        .cart-button.clicked span.added {
+            animation: txt2 1.5s ease-in-out forwards;
+        }
+
+        @keyframes cart {
+            0% {
+                left: -10%;
+            }
+
+            40%,
+            60% {
+                left: 50%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        @keyframes box {
+
+            0%,
+            40% {
+                top: -30%;
+            }
+
+            60% {
+                top: 34%;
+                left: 50.5%;
+            }
+
+            100% {
+                top: 34%;
+                left: 200%;
+            }
+        }
+
+        @keyframes txt1 {
+            0% {
+                opacity: 1;
+            }
+
+            30%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes txt2 {
+
+            0%,
+            70% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -128,10 +257,31 @@
                         </div>
                     </div>
 
-                    <a id="product_add_to_cart" class="btn btn-primary btn-lg me-2 shadow-sm" role="button" href="">
-                        <i class="bi bi-cart-plus-fill"></i>
-                        Add to Cart
+                    <a id="product_add_to_cart" class="btn btn-outline-dark cart-button btn-lg me-2 shadow-sm"
+                        role="button">
+                        <span class="add-to-cart">Add to cart</span>
+                        <span class="added">Add to cart</span>
+                        <i class="bi bi-cart-fill"></i>
+                        <i class="bi bi-box2-fill"></i>
                     </a>
+
+                    <script>
+                        const cartButtons = document.querySelectorAll('.cart-button');
+
+                        cartButtons.forEach(button => {
+                            button.addEventListener('click', cartClick);
+                        });
+
+                        function cartClick() {
+                            let button = this;
+                            button.classList.add('clicked');
+
+                            button.addEventListener('animationend', function () {
+                               button.classList.remove('clicked');
+                            }, { once: true });
+                        }
+                    </script>
+
                     <a id="product_wishlist" class="btn btn-outline-danger btn-lg shadow-sm" role="button" href="">
                         <i class="bi bi-heart-fill"></i>
                     </a>
