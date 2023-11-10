@@ -209,6 +209,8 @@
                                 <a class="dropdown-item" href="#" onclick="changeDropdownText(this)">Furniture</a>
                                 <a class="dropdown-item" href="#" onclick="changeDropdownText(this)">Kitchen</a>
                                 <a class="dropdown-item" href="#" onclick="changeDropdownText(this)">Outdoor</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" onclick="changeDropdownText(this)">Other</a>
                             </div>
                         </div>
                         <input class="form-control me-2" type="search" id="search_query" placeholder="Search products"
@@ -220,7 +222,7 @@
                         </button>
 
                         <button class="btn btn-outline-dark d-flex align-items-center" style="margin-left: 8px;"
-                            type="submit">
+                            type="submit" disabled>
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -236,7 +238,7 @@
             <div class="col-md-6">
                 <div class="p-xl-5 m-xl-5">
                     <img id="product_image" class="shadow-sm rounded img-fluid w-100 fit-cover"
-                        style="object-fit: contain; min-height: 300px;"></img>
+                        style="object-fit: contain; min-height: 300px; max-height: 512px;"></img>
                     <div style="max-width: 350;">
                         <i class="bi bi-star-fill"></i>
                         <a id="product_rating"></a>
@@ -277,15 +279,16 @@
                             button.classList.add('clicked');
 
                             button.addEventListener('animationend', function () {
-                               button.classList.remove('clicked');
+                                button.classList.remove('clicked');
                             }, { once: true });
                         }
                     </script>
 
-                    <a id="product_wishlist" class="btn btn-outline-danger btn-lg shadow-sm" role="button" href="">
+                    <a id="product_wishlist" class="btn btn-outline-danger btn-lg shadow-sm"
+                        style="z-index: 100; position: relative;" role="button" href="">
                         <i class="bi bi-heart-fill"></i>
                     </a>
-                    <a id="product_sales" style="margin-left: 8px;"></a>
+                    <a id="product_sales" style="margin-left: 8px; z-index: 100; position: relative;"></a>
                 </div>
             </div>
         </div>
