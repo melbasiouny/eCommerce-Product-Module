@@ -19,6 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    product_container.addEventListener('click', function (event) {
+        const product_element = event.target.closest('.product');
+        if (product_element) {
+            const product_ID = product_element.getAttribute('data-product-id');
+            go_to_product(product_ID);
+        }
+    });
+
     function display_products(page) {
         fetch_products(page)
             .then(products => {
@@ -37,14 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>`;
 
                     product_container.innerHTML += productHtml;
-                });
-
-                product_container.addEventListener('click', function (event) {
-                    const product_element = event.target.closest('.product');
-                    if (product_element) {
-                        const product_ID = product_element.getAttribute('data-product-id');
-                        go_to_product(product_ID);
-                    }
                 });
 
                 page_number.textContent = current_page.toString();
@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => {
                 if (!response.ok) {
                     console.error('Error incrementing clicks for pid:', product_id);
+                } else {
+                    window.location.href = 'detailed-view.html?product=' + encodeURIComponent(product_id);
                 }
             })
             .catch(error => {
                 console.error('Error while sending POST request:', error);
             });
-
-        window.location.href = 'detailed-view.html?product=' + encodeURIComponent(product_id);
     }
 
     search_button.addEventListener("click", (event) => {
