@@ -99,5 +99,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (product.stock <= 10) {
             document.getElementById("product_stock").classList.add("low-stock");
         }
+
+        if (product.price <= 0 || product.stock <= 0) {
+            add_to_cart_button.classList.add("gray-out");
+            add_to_cart_button.classList.remove("cart-button");
+
+            add_to_cart_button.querySelector(".bi-cart-fill").remove();
+            add_to_cart_button.querySelector(".bi-box2-fill").remove();
+            add_to_cart_button.querySelector(".add-to-cart").remove();
+        }
     }
 });
