@@ -36,15 +36,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
-    /*
     add_to_cart_button.addEventListener("click", (event) => {
         event.preventDefault();
-        add_to_cart_button.classList.add('heartBeatAnimation');
-        setTimeout(function () {
-            add_to_cart_button.classList.remove('heartBeatAnimation');
-        }, 500);
     });
-    */
 
     wishlist_button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -101,5 +95,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById("product_price").textContent = "C$ " + product.price;
         document.getElementById("product_sid").textContent = "Seller: " + product.sid;
         document.getElementById("product_stock").textContent = product.stock + " left in stock";
+
+        if (product.stock <= 10) {
+            document.getElementById("product_stock").classList.add("low-stock");
+        }
     }
 });
