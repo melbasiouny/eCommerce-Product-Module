@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return fetch(`http://172.105.25.146:8080/api/product?category=${category}&search=${query}`)
             .then(response => response.json())
             .catch(error => {
+                window.location.href = '404.html';
                 console.error("Error fetching products: ", error);
                 return [];
             });

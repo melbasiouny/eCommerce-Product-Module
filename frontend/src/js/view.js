@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 .then(response => response.json());
             display_product_details(product);
         } catch (error) {
+            window.location.href = '404.html';
             console.error("Error fetching product data: ", error);
         }
     }
