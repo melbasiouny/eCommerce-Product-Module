@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (category_button.textContent == "All") {
             if (search_query.value == "") {
-                window.location.href = 'index.html';
+                window.location.href = 'index.html?page=1';
             } else {
                 window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
             }

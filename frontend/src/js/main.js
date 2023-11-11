@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const query_string = window.location.search;
     const product_container = document.getElementById("product_container");
     const previous_button = document.getElementById("previous_button");
     const search_button = document.getElementById("search_button");
@@ -6,8 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const category = document.getElementById("category_button");
     const page_number = document.getElementById("page_number");
     const next_button = document.getElementById("next_button");
+    const url_params = new URLSearchParams(query_string);
+    const current_page = parseInt(url_params.get('page')) || 1;
 
-    let current_page = 1;
     category.textContent = "All";
 
     function fetch_products(page) {
@@ -50,6 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 page_number.textContent = current_page.toString();
 
+                if (products.length == 0) {
+                    window.location.href = '404.html';
+                }
+
                 if (products.length < 16) {
                     next_button.classList.add("disabled");
                 } else {
@@ -83,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (category.textContent == "All") {
             if (search_query.value == "") {
-                window.location.href = 'index.html';
+                window.location.href = 'index.html?page=1';
             } else {
                 window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
             }
@@ -95,16 +101,13 @@ document.addEventListener("DOMContentLoaded", function () {
     previous_button.addEventListener("click", (event) => {
         event.preventDefault();
         if (current_page > 1) {
-            current_page--;
-            display_products(current_page);
+            window.location.href = 'index.html?page=' + (current_page - 1).toString();
         }
     });
 
     next_button.addEventListener("click", (event) => {
         event.preventDefault();
-        console.log("click");
-        current_page++;
-        display_products(current_page);
+        window.location.href = 'index.html?page=' + (current_page + 1).toString();
     });
 
     display_products(current_page);
