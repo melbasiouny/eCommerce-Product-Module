@@ -30,18 +30,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 product_container.innerHTML = "";
 
                 products.forEach(product => {
-                    const productHtml =
+                    const is_low_stock = product.stock <= 10;
+                    const product_html =
                         `<div class="product rounded" style="margin-bottom: 40px; margin-left: 10px; margin-right: 10px; margin-top: 10px; width: 180px; height: auto; position: relative; overflow: hidden;" data-product-id="${product.pid}" onmouseover="this.style.boxShadow='inset 0 0 8px 1px rgba(81, 92, 255, 0.16), 0 0 16px 4px rgba(81, 157, 255, 0.16)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
                             <img class="rounded" style="padding: 12px; object-fit: contain; margin-bottom: 0px;" src="${product.image}" width="180" height="120">
                             <div class="rating" style="position: absolute; top: 0px; right: 6px;">
                                 <span style="color: black; font-weight: bold; font-size: 14px;">${product.rating}</span>
                             <i class="bi bi-star-fill"></i>
                             </div>
-                            <div class="text-uppercase fw-bold product-name" style="padding-left: 4px; padding-right: 4px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal; text-overflow: ellipsis; overflow-wrap: break-word; z-index: 2;">${product.name}</div>
+                            <div class="text-uppercase fw-bold product-name" style="padding-left: 4px; padding-right: 4px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal; text-overflow: ellipsis; overflow-wrap: break-word; z-index: 2;">
+                                ${is_low_stock ? '<i class="bi bi-exclamation-circle-fill"></i>' : ''}
+                                ${product.name}
+                            </div>
                             <div class="product-price" style="padding-left: 4px; padding-right: 4px; z-index: 2;">C$ ${product.price}</div>
                         </div>`;
 
-                    product_container.innerHTML += productHtml;
+                    product_container.innerHTML += product_html;
                 });
 
                 if (products.length > 0) {
