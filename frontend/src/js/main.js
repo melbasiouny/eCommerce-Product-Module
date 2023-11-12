@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function is_product_selling_fast(product) {
         const RATING_THRESHOLD = 4.5;
-        const STOCK_THRESHOLD = 10;
+        const STOCK_THRESHOLD = 1;
         const SALES_THRESHOLD = 100;
-        const CLICKS_THRESHOLD = SALES_THRESHOLD * .2;
+        const CLICKS_THRESHOLD = product.sales * .2;
 
         return (
             product.rating >= RATING_THRESHOLD &&
