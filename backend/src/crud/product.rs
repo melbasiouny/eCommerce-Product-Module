@@ -131,6 +131,7 @@ pub async fn retrieve_paginated_products(
             stock: product.stock,
             sales: product.sales,
             rating: product.rating,
+            clicks: product.clicks
         };
 
         products_view.push(product_view);

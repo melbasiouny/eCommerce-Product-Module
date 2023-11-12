@@ -69,6 +69,9 @@ pub struct ProductView {
 
     /// The product rating using a five-star system.
     pub rating: f32,
+
+    /// The product number of clicks.
+    pub clicks: u32,
 }
 
 /// Represents the query parameters for a product search.
