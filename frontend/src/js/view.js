@@ -85,6 +85,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         button.classList.add('clicked');
     }
 
+    function is_product_selling_fast(product) {
+        const RATING_THRESHOLD = 4.5;
+        const STOCK_THRESHOLD = 10;
+        const SALES_THRESHOLD = 100;
+        // const CLICKS_THRESHOLD = SALES_THRESHOLD / 2;
+
+        return (
+            product.rating >= RATING_THRESHOLD &&
+            product.stock >= STOCK_THRESHOLD &&
+            product.sales >= SALES_THRESHOLD
+            // product.clicks >= CLICKS_THRESHOLD
+        );
+    }
+
     function display_product_details(product) {
         document.title = product.pid + " | " + product.name;
         category.textContent = product.category;
@@ -100,6 +114,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         if (product.stock <= 10) {
             document.getElementById("product_stock").classList.add("low-stock");
+        }
+
+        if (!is_product_selling_fast(product)) {
+            document.getElementById("product_status").remove();
         }
 
         if (product.price <= 0 || product.stock <= 0) {
