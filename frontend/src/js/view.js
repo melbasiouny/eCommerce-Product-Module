@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById("product_sales").textContent = product.sales + " sold";
         document.getElementById("product_description").textContent = product.description;
         document.getElementById("product_price").textContent = "C$ " + product.price;
+        document.getElementById("product_category").textContent = product.category;
         document.getElementById("product_sid").textContent = "Seller: " + product.sid;
         document.getElementById("product_stock").textContent = product.stock + " left in stock";
 
