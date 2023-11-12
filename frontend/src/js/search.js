@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     const product_html =
                         `<div class="product rounded" style="margin-bottom: 40px; margin-left: 10px; margin-right: 10px; margin-top: 10px; width: 180px; height: auto; position: relative; overflow: hidden;" data-product-id="${product.pid}" onmouseover="this.style.boxShadow='inset 0 0 8px 1px rgba(81, 92, 255, 0.16), 0 0 16px 4px rgba(81, 157, 255, 0.16)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)';">
                             <img class="rounded" style="padding: 12px; object-fit: contain; margin-bottom: 0px;" src="${product.image}" width="180" height="120">
+                            <div class="status" style="position: absolute; top: 0px; left: 4px;">    
+                                ${is_product_selling_fast(product) ? '<p style="color: black;"><i class="bi bi-lightning-charge-fill" ></i></p>' : ''}
+                            </div>
                             <div class="rating" style="position: absolute; top: 0px; right: 6px;">
                                 <span style="color: black; font-weight: bold; font-size: 14px;">${product.rating}</span>
                             <i class="bi bi-star-fill"></i>
@@ -70,6 +73,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
             });
+    }
+
+    function is_product_selling_fast(product) {
+        const RATING_THRESHOLD = 4.5;
+        const STOCK_THRESHOLD = 10;
+        const SALES_THRESHOLD = 100;
+        // const CLICKS_THRESHOLD = SALES_THRESHOLD / 2;
+
+        return (
+            product.rating >= RATING_THRESHOLD &&
+            product.stock >= STOCK_THRESHOLD &&
+            product.sales >= SALES_THRESHOLD
+            // product.clicks >= CLICKS_THRESHOLD
+        );
     }
 
     function go_to_product(product_id) {
