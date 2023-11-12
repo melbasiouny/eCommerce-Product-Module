@@ -1,9 +1,0 @@
-/home/mostafa/playground/group-3-ecommerce-product-module/backend/target/debug/deps/linux_raw_sys-e0ce1a61a424a33a.rmeta: /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/lib.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/elf.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/errno.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/general.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/ioctl.rs
-
-/home/mostafa/playground/group-3-ecommerce-product-module/backend/target/debug/deps/linux_raw_sys-e0ce1a61a424a33a.d: /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/lib.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/elf.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/errno.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/general.rs /home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/ioctl.rs
-
-/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/lib.rs:
-/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/elf.rs:
-/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/errno.rs:
-/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/general.rs:
-/home/mostafa/.cargo/registry/src/index.crates.io-6f17d22bba15001f/linux-raw-sys-0.4.10/src/x86_64/ioctl.rs:
