@@ -41,6 +41,9 @@ pub struct Data {
 
     /// The product rating using a five-star system.
     pub rating: f32,
+
+    /// The product number of clicks.
+    pub clicks: u32,
 }
 
 /// Represents the data structure for a simplified product view.

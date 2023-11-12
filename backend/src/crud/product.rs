@@ -43,6 +43,7 @@ pub async fn retrieve_data(pid: String, client: Client) -> Result<Option<Data>, 
             stock: product.stock,
             sales: product.sales,
             rating: product.rating,
+            clicks: product.clicks
         };
 
         Ok(Some(data))
