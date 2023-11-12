@@ -89,13 +89,13 @@ document.addEventListener('DOMContentLoaded', async function () {
         const RATING_THRESHOLD = 4.5;
         const STOCK_THRESHOLD = 10;
         const SALES_THRESHOLD = 100;
-        // const CLICKS_THRESHOLD = SALES_THRESHOLD / 2;
+        const CLICKS_THRESHOLD = SALES_THRESHOLD * .2;
 
         return (
             product.rating >= RATING_THRESHOLD &&
             product.stock >= STOCK_THRESHOLD &&
-            product.sales >= SALES_THRESHOLD
-            // product.clicks >= CLICKS_THRESHOLD
+            product.sales >= SALES_THRESHOLD &&
+            product.clicks >= CLICKS_THRESHOLD
         );
     }
 
