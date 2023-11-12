@@ -96,6 +96,8 @@ The functionality of the product module depends on the following set of APIs. AP
                 "name": "",
                 "image": "",
                 "price": 0.0,
+                "stock": 0,
+                "sales": 0,
                 "rating": 0.0
             },
         ]

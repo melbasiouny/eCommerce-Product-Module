@@ -112,7 +112,7 @@ pub async fn retrieve_paginated_products(
     let collection = client
         .database("ecommerce_db")
         .collection::<Product>("products");
-    let limit = 16;
+    let limit = 18;
     let skip = (query.page - 1) * limit;
     let options = FindOptions::builder()
         .skip(skip as u64)
@@ -128,6 +128,8 @@ pub async fn retrieve_paginated_products(
             name: product.name.clone(),
             image: product.image.clone(),
             price: product.price,
+            stock: product.stock,
+            sales: product.sales,
             rating: product.rating,
         };
 
@@ -158,52 +160,44 @@ pub async fn update_product(
         .database("ecommerce_db")
         .collection::<Product>("products");
     let filter = doc! { "pid": pid.clone() };
+    let update = doc! {
+        "$set": {
+            "image": query.image.clone(),
+            "price": query.price,
+            "stock": query.stock,
+            "sales": query.sales,
+            "rating": query.rating,
+        }
+    };
+
     let options = UpdateOptions::builder().upsert(false).build();
 
-    if let Ok(Some(mut product)) = collection.find_one(filter.clone(), None).await {
-        // Update fields only if they are not None
-        if query.image.is_empty() {
-
-        }
-        if let Some(image) = &query.image {
-            product.image = Some(image.clone());
-        }
-        if let Some(price) = query.price {
-            product.price = Some(price);
-        }
-        if let Some(stock) = query.stock {
-            product.stock = Some(stock);
-        }
-        if let Some(sales) = query.sales {
-            product.sales = Some(sales);
-        }
-        if let Some(rating) = query.rating {
-            product.rating = Some(rating);
-        }
-
-        let update = doc! {
-            "$set": {
-                "image": product.image.clone(),
-                "price": product.price,
-                "stock": product.stock,
-                "sales": product.sales,
-                "rating": product.rating,
-            }
-        };
-
-        // Update the document in MongoDB
+    if let Ok(Some(product)) = collection.find_one(filter.clone(), None).await {
         collection
-            .update_one(filter.clone(), update, options)
-            .await;
+            .update_one(filter, update, options)
+            .await
+            .expect("Failed to update product");
 
-        // Update the document in MeiliSearch
         ms_client
             .index("products")
             .add_or_replace(
-                &[product.clone()], // Assuming clone is implemented for Product
+                &[Product {
+                    pid: pid.clone(),
+                    sid: product.sid.clone(),
+                    name: product.name.clone(),
+                    description: product.description.clone(),
+                    image: product.image.clone(),
+                    category: product.category.clone(),
+                    price: query.price,
+                    stock: query.stock,
+                    sales: query.sales,
+                    rating: query.rating,
+                    clicks: product.clicks,
+                }],
                 None,
             )
-            .await;
+            .await
+            .unwrap();
 
         Ok(true)
     } else {

@@ -61,6 +61,12 @@ pub struct ProductView {
     /// The product price.
     pub price: f32,
 
+    /// The product stock level.
+    pub stock: u32,
+
+    /// The product total number of sales.
+    pub sales: u32,
+
     /// The product rating using a five-star system.
     pub rating: f32,
 }
