@@ -26,7 +26,7 @@ jobs:
         cargo build --release
 
     - name: Compress as tar.gz
-      run: tar -czvf group-3-ecommerce-product-module.tar.gz -C backend/target/release/group-3-ecommerce-product-module
+      run: tar -czvf group-3-ecommerce-product-module.tar.gz -C backend/target/release/ group-3-ecommerce-product-module
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
