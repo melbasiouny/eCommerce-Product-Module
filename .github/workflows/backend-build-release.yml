@@ -21,7 +21,9 @@ jobs:
         profile: minimal
 
     - name: Build Rust Project
-      run: cargo build --release
+      run: |
+        cd backend
+        cargo build --release
 
     - name: Compress as tar.gz
       run: tar -czvf group-3-ecommerce-product-module.tar.gz -C target/release/ group-3-ecommerce-product-module
