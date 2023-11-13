@@ -1,0 +1,16 @@
+name: Frontend - Deploy
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy Frontend
+        run: curl -X GET http://172.105.25.146:8082/frontend/deploy
