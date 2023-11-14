@@ -9,13 +9,23 @@ extern crate log;
 extern crate mongodb;
 
 use actix_cors::Cors;
-use actix_web::{middleware, web, App, HttpServer};
-use std::{env, io};
+use actix_web::{middleware, web, App, HttpRequest, HttpResponse, HttpServer};
+use std::{env, fs, io};
 
 mod crud;
 mod database;
 mod routes;
 mod structures;
+
+async fn not_found_handler(request: HttpRequest) -> HttpResponse {
+    let _ = request.path().to_string();
+    let content = fs::read_to_string("backend/src/pages/404.html")
+        .unwrap_or_else(|_| "404 Not Found".to_string());
+
+    HttpResponse::NotFound()
+        .content_type("text/html")
+        .body(content)
+}
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
@@ -54,6 +64,7 @@ async fn main() -> io::Result<()> {
             .service(routes::product::update)
             .service(routes::profile::add_product)
             .service(routes::profile::remove_product)
+            .default_service(web::to(not_found_handler))
     })
     .bind("0.0.0.0:8080")?
     .run()
