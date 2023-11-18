@@ -30,8 +30,8 @@ async fn not_found_handler(request: HttpRequest) -> HttpResponse {
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     // Set up logging.
-    env::set_var("RUST_LOG", "error,info,actix_web=debug,actix_server=info");
-    env_logger::init();
+    // env::set_var("RUST_LOG", "error,info,actix_web=debug,actix_server=info");
+    // env_logger::init();
 
     // Establish a connection to the database.
     let client = database::establish_connection().await.unwrap();
@@ -52,7 +52,7 @@ async fn main() -> io::Result<()> {
             .max_age(3600);
 
         App::new()
-            .wrap(middleware::Logger::default())
+            // .wrap(middleware::Logger::default())
             .wrap(cors)
             .app_data(shared_client.clone())
             .app_data(shared_products_index.clone())
