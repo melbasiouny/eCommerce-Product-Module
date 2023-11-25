@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             if (!response.ok) {
-                console.error('Error, unable to send product hover data to analysis module. Fix your shit man:', product_id);
+                console.error('Error, unable to send product hover data to analysis module.', product_id);
             }
         } catch (error) {
             console.error('Error while sending POST request:', error);
