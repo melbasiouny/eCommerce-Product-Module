@@ -35,14 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         `<div class="product rounded" style="margin-bottom: 40px; margin-left: 10px; margin-right: 10px; margin-top: 10px; width: 180px; height: auto; position: relative; overflow: hidden;" data-product-id="${product.pid}">
                             <img class="rounded" style="padding: 12px; object-fit: contain; margin-bottom: 0px;" src="${product.image}" width="180" height="120">
                             <div class="status" style="position: absolute; top: 0px; left: 4px;">    
-                                ${is_product_selling_fast(product) ? '<p style="color: black;"><i class="bi bi-fire"></i></p>' : ''}
+                                ${is_product_selling_fast(product) ? '<p style="color: black;"><i class="bi bi-fire" style="color: darkorange"></i></p>' : ''}
                             </div>
                             <div class="rating" style="position: absolute; top: 0px; right: 4px;">
                                 <span style="color: black; font-weight: bold; font-size: 14px;">${product.rating}</span>
-                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill" style="color: gold"></i>
                             </div>
                             <div class="text-uppercase fw-bold product-name" style="padding-left: 4px; padding-right: 4px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; white-space: normal; text-overflow: ellipsis; overflow-wrap: break-word; z-index: 2;">
-                                ${is_low_stock ? '<i class="bi bi-exclamation-circle-fill"></i>' : ''}
+                                ${is_low_stock ? '<i class="bi bi-exclamation-circle-fill" style="color: darkred"></i>' : ''}
                                 ${product.name}
                             </div>
                             <div class="product-price" style="padding-left: 4px; padding-right: 4px; z-index: 2;">C$ ${product.price}</div>
