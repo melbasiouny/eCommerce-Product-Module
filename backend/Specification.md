@@ -160,6 +160,27 @@ The functionality of the product module depends on the following set of APIs. AP
         }
         ```
 
+- **GET** `/api/profile/{sid}/products` *(internal)*
+    - Retrieves all products sold by the specified seller ID.
+    - Response **(JSON)**:
+        ```json
+        [
+            {
+                "pid": "",
+                "sid": "",
+                "name": "",
+                "description": "",
+                "image": "",
+                "category": "",
+                "price": 0.0,
+                "stock": 0,
+                "sales": 0,
+                "rating": 0.0,
+                "clicks": 0
+            },
+        ]
+        ```
+
 - **POST** `/api/profile/seller/add/product?pid=&sid=&name=&description=&image=&category=&price=&stock=` *(internal)*
     - Adds a new product to the product module database.
     - Response **(HTML)** status code.

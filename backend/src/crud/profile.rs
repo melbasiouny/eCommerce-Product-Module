@@ -7,8 +7,43 @@ use crate::routes::profile::ProductQuery;
 use crate::structures::Product;
 
 use actix_web::Error;
+use futures::StreamExt;
 use mongodb::bson::doc;
 use mongodb::Client;
+
+/// Retrieve products sold by the specified seller id.
+///
+/// This function searches for products in the database based on the seller id.
+///
+/// # Parameters
+///
+/// - `sid`: The `sid` of the seller.
+/// - `client`: MongoDB client instance used for database access.
+///
+/// # Returns
+///
+/// - Returns a tuple `(Vec<Product>, bool)`. If the seller exists, it will return a `Vec<Product>` containing all the products sold by the seller and `true`. If the seller does not exist, an empty `Vec` and `false` are returned.
+pub async fn retrieve_seller_products(sid: String, client: Client) -> (Vec<Product>, bool) {
+    let collection = client
+        .database("ecommerce_db")
+        .collection::<Product>("products");
+    let filter = doc! { "sid": sid.clone() };
+
+    let cursor_result = collection.find(filter, None).await;
+
+    match cursor_result {
+        Ok(mut cursor) => {
+            let mut products: Vec<Product> = Vec::new();
+            while let Some(result) = cursor.next().await {
+                if let Ok(document) = result {
+                    products.push(document);
+                }
+            }
+            (products.clone(), !products.is_empty())
+        }
+        Err(_) => (Vec::new(), false),
+    }
+}
 
 /// List a product in the database.
 ///

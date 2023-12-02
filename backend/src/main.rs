@@ -9,7 +9,7 @@ extern crate log;
 extern crate mongodb;
 
 use actix_cors::Cors;
-use actix_web::{middleware, web, App, HttpRequest, HttpResponse, HttpServer};
+use actix_web::{middleware, web::{self, route}, App, HttpRequest, HttpResponse, HttpServer};
 use std::{env, fs, io};
 
 mod crud;
@@ -62,6 +62,7 @@ async fn main() -> io::Result<()> {
             .service(routes::product::search)
             .service(routes::product::page)
             .service(routes::product::update)
+            .service(routes::profile::seller_products)
             .service(routes::profile::add_product)
             .service(routes::profile::remove_product)
             .default_service(web::to(not_found_handler))

@@ -37,6 +37,38 @@ pub struct ProductQuery {
     pub stock: u32,
 }
 
+/// Retrieve products sold by the specified seller id.
+///
+/// This function is an Actix web handler for retrieving products sold by a specific seller. It receives the seller id as a path parameter and delegates the operation to the `profile::retrieve_seller_products` function.
+
+/// # Parameters
+///
+/// - `path`: Path parameters containing the seller id.
+/// - `client`: MongoDB client data.
+
+/// # Returns
+///
+/// - Returns an `HttpResponse` indicating success or an error. If the operation was successful and the seller has products, it returns `Ok(HttpResponse::Ok().content_type("application/json").json(products))`. If the seller exists but has no products, it returns `Ok(HttpResponse::NoContent().finish())`. If the operation was not successful, it returns `Ok(HttpResponse::InternalServerError().finish())`.
+#[get("/api/profile/{sid}/products")]
+pub async fn seller_products(
+    path: web::Path<(String,)>,
+    client: web::Data<Client>,
+) -> HttpResponse {
+    let (products, success) =
+        profile::retrieve_seller_products(path.0.clone(), client.get_ref().clone()).await;
+    if success {
+        if !products.is_empty() {
+            HttpResponse::Ok()
+                .content_type("application/json")
+                .json(products)
+        } else {
+            HttpResponse::NoContent().finish()
+        }
+    } else {
+        HttpResponse::InternalServerError().finish()
+    }
+}
+
 /// Add a product to the seller's profile.
 ///
 /// This function is an Actix web handler for adding a product to a seller's profile. It receives product information as query parameters and delegates the operation to the `profile::list_product` function.
