@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', async function () {
     const query_string = window.location.search;
     const url_params = new URLSearchParams(query_string);
     const pid = url_params.get('product');
+    const uid = url_params.get('uid') || null;
+
+    if (uid == null)
+    {
+        window.location.href = '404.html';
+        console.log("Invalid uid.")
+    }
+
+    const anchorElement = document.getElementById("Index");
+    anchorElement.href = `index.html?uid=${uid}&page=1`;
 
     if (!pid) {
         console.log('No product ID found in the query parameters.');
@@ -28,12 +38,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         if (category.textContent == "All") {
             if (search_query.value == "") {
-                window.location.href = 'index.html?page=1';
+                window.location.href = 'index.html?uid=' + uid + '&page=1';
             } else {
-                window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+                window.location.href = 'product-search.html?uid=' + uid + '&category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
             }
         } else {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
+            window.location.href = 'product-search.html?uid=' + uid + '&category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
         }
     });
 

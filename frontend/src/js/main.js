@@ -9,6 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const next_button = document.getElementById("next_button");
     const url_params = new URLSearchParams(query_string);
     const current_page = parseInt(url_params.get('page')) || 1;
+    const uid = url_params.get('uid') || null;
+
+    if (uid == null)
+    {
+        window.location.href = '404.html';
+        console.log("Invalid uid.")
+    }
+
+    const anchorElement = document.getElementById("Index");
+    anchorElement.href = `index.html?uid=${uid}&page=1`;
 
     category.textContent = "All";
 
@@ -143,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!response.ok) {
                     console.error('Error incrementing clicks for pid:', product_id);
                 } else {
-                    window.location.href = 'detailed-view.html?product=' + encodeURIComponent(product_id);
+                    window.location.href = 'detailed-view.html?uid=' + uid + '&product=' + encodeURIComponent(product_id);
                 }
             })
             .catch(error => {
@@ -156,25 +166,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (category.textContent == "All") {
             if (search_query.value == "") {
-                window.location.href = 'index.html?page=1';
+                window.location.href = 'index.html?uid=' + uid + '&page=1';
             } else {
-                window.location.href = 'product-search.html?category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
+                window.location.href = 'product-search.html?uid=' + uid + '&category=' + encodeURIComponent('') + '&query=' + encodeURIComponent(search_query.value);
             }
         } else {
-            window.location.href = 'product-search.html?category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
+            window.location.href = 'product-search.html?uid=' + uid + '&category=' + encodeURIComponent(category.textContent) + '&query=' + encodeURIComponent(search_query.value);
         }
     });
 
     previous_button.addEventListener("click", (event) => {
         event.preventDefault();
         if (current_page > 1) {
-            window.location.href = 'index.html?page=' + (current_page - 1).toString();
+            window.location.href = 'index.html?uid=' + uid + '&page=' + (current_page - 1).toString();
         }
     });
 
     next_button.addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.href = 'index.html?page=' + (current_page + 1).toString();
+        window.location.href = 'index.html?uid=' + uid + '&page=' + (current_page + 1).toString();
     });
 
     display_products(current_page);
