@@ -14,11 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (uid == null)
     {
         window.location.href = '404.html';
-        console.log("Invalid uid.")
+        console.log("Invalid uid.");
     }
 
     const anchorElement = document.getElementById("Index");
     anchorElement.href = `index.html?uid=${uid}&page=1`;
+
+    const CartButton = document.getElementById("CartButton");
+    CartButton.href = `https://shoppingcart.honeybeeks.net/api/${uid}`;
+
+    const WishlistButton = document.getElementById("WishlistButton");
+    WishlistButton.href = `https://shoppingcart.honeybeeks.net/api/wishlist/${uid}`;
 
     category.textContent = "All";
 

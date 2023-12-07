@@ -10,15 +10,23 @@ document.addEventListener('DOMContentLoaded', async function () {
     const url_params = new URLSearchParams(query_string);
     const pid = url_params.get('product');
     const uid = url_params.get('uid') || null;
+    
+    let selectedProduct = null;
 
     if (uid == null)
     {
         window.location.href = '404.html';
-        console.log("Invalid uid.")
+        console.log("Invalid uid.");
     }
 
     const anchorElement = document.getElementById("Index");
     anchorElement.href = `index.html?uid=${uid}&page=1`;
+
+    const CartButton = document.getElementById("CartButton");
+    CartButton.href = `https://shoppingcart.honeybeeks.net/api/${uid}`;
+
+    const WishlistButton = document.getElementById("WishlistButton");
+    WishlistButton.href = `https://shoppingcart.honeybeeks.net/api/wishlist/${uid}`;
 
     if (!pid) {
         console.log('No product ID found in the query parameters.');
@@ -26,6 +34,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         try {
             const product = await fetch(`http://172.105.25.146:8080/api/product/${pid}/data`)
                 .then(response => response.json());
+
+            selectedProduct = product;
             display_product_details(product);
         } catch (error) {
             window.location.href = '404.html';
@@ -81,6 +91,31 @@ document.addEventListener('DOMContentLoaded', async function () {
             origin: { x: x / window.innerWidth, y: y / window.innerHeight },
             ...defaults,
         });
+
+        // TODO: Add to wishlist.
+        try {
+            const response = fetch(
+                `https://shoppingcart.honeybeeks.net/api/wishlist/upload/${uid}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "id": selectedProduct.pid,
+                        "sellerid": selectedProduct.sid,
+                        "name": selectedProduct.name,
+                        "description": selectedProduct.description,
+                        "imgurl": selectedProduct.image,
+                        "cost": selectedProduct.price
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                console.error('Error, unable to add product to wishlist.');
+            }
+        } catch (error) {
+            console.error('Error while sending POST request:', error);
+        }
     });
 
     const cartButtons = document.querySelectorAll('.cart-button');
@@ -93,6 +128,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     function cartClick() {
         let button = this;
         button.classList.add('clicked');
+
+        // TODO: Add to cart.
+        try {
+            const response = fetch(
+                `https://shoppingcart.honeybeeks.net/api/upload/${uid}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        "id": selectedProduct.pid,
+                        "sellerid": selectedProduct.sid,
+                        "name": selectedProduct.name,
+                        "description": selectedProduct.description,
+                        "imgurl": selectedProduct.image,
+                        "cost": selectedProduct.price
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                console.error('Error, unable to add product to cart.');
+            }
+        } catch (error) {
+            console.error('Error while sending POST request:', error);
+        }
     }
 
     function is_product_selling_fast(product) {
