@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     anchorElement.href = `index.html?uid=${uid}&page=1`;
 
     const CartButton = document.getElementById("CartButton");
-    CartButton.href = `https://shoppingcart.honeybeeks.net/api/${uid}`;
+    CartButton.href = `https://shoppingcart.honeybeeks.net/${uid}`;
 
     const WishlistButton = document.getElementById("WishlistButton");
-    WishlistButton.href = `https://shoppingcart.honeybeeks.net/api/wishlist/${uid}`;
+    WishlistButton.href = `https://shoppingcart.honeybeeks.net/wishlist/${uid}`;
 
     if (!pid) {
         console.log('No product ID found in the query parameters.');
