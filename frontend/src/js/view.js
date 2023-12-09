@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // TODO: Add to wishlist.
         try {
             const response = fetch(
-                `http://172.105.25.146:8080/api/addtowishlist/${uid}`,
+                `http://172.105.25.146:8080/api/frontend/addtowishlist/${uid}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // TODO: Add to cart.
         try {
             const response = fetch(
-                `http://172.105.25.146:8080/api/addtocart/${uid}`,
+                `http://172.105.25.146:8080/api/frontend/addtocart/${uid}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
