@@ -23,7 +23,7 @@ pub struct CartData {
     pub cost: f64,
 }
 
-#[get("/api/frontend/addtocart/{uid}")]
+#[post("/api/frontend/addtocart/{uid}")]
 pub async fn route_cart(
     path: web::Path<(String,)>,
     json: web::Json<CartData>,
@@ -38,7 +38,7 @@ pub async fn route_cart(
     Ok(HttpResponse::Ok().finish())
 }
 
-#[get("/api/frontend/addtowishlist/{uid}")]
+#[post("/api/frontend/addtowishlist/{uid}")]
 pub async fn route_wishlist(
     path: web::Path<(String,)>,
     json: web::Json<CartData>,
