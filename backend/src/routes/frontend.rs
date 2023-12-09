@@ -33,7 +33,8 @@ pub async fn route_cart(
     client
         .post(format!("https://shoppingcart.honeybeeks.net/api/upload/{}", path.0.clone()))
         .json(&json)
-        .send();
+        .send()
+        .await;
 
     Ok(HttpResponse::Ok().finish())
 }
@@ -48,7 +49,8 @@ pub async fn route_wishlist(
     client
         .post(format!("https://shoppingcart.honeybeeks.net/api/wishlist/upload/{}", path.0.clone()))
         .json(&json)
-        .send();
+        .send()
+        .await;
 
     Ok(HttpResponse::Ok().finish())
 }
