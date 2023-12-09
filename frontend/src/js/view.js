@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // TODO: Add to wishlist.
         try {
             const response = fetch(
-                `https://shoppingcart.honeybeeks.net/api/wishlist/upload/${uid}`,
+                `http://172.105.25.146:8080/api/addtowishlist/${uid}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // TODO: Add to cart.
         try {
             const response = fetch(
-                `https://shoppingcart.honeybeeks.net/api/upload/${uid}`,
+                `http://172.105.25.146:8080/api/addtocart/${uid}`,
                 {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

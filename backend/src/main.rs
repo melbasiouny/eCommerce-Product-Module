@@ -65,6 +65,8 @@ async fn main() -> io::Result<()> {
             .service(routes::profile::seller_products)
             .service(routes::profile::add_product)
             .service(routes::profile::remove_product)
+            .service(routes::frontend::route_cart)
+            .service(routes::frontend::route_wishlist)
             .default_service(web::to(not_found_handler))
     })
     .bind("0.0.0.0:8080")?

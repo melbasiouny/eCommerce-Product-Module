@@ -6,3 +6,4 @@
 pub mod analytics;
 pub mod product;
 pub mod profile;
+pub mod frontend;
