@@ -20,7 +20,7 @@ pub struct CartData {
     pub imgurl: String,
 
     /// The product category.
-    pub cost: f64,
+    pub cost: f32,
 }
 
 #[post("/api/frontend/addtocart/{uid}")]
