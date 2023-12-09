@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             );
 
             if (!response.ok) {
-                console.error('Error, unable to add product to wishlist.');
+                // console.error('Error, unable to add product to wishlist.');
             }
         } catch (error) {
             console.error('Error while sending POST request:', error);
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             );
 
             if (!response.ok) {
-                console.error('Error, unable to add product to cart.');
+                // console.error('Error, unable to add product to cart.');
             }
         } catch (error) {
             console.error('Error while sending POST request:', error);
